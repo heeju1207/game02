@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>게임</title>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,900&display=swap&subset=korean" rel="stylesheet">
+
+    <style type="text/css">
+        html{font-family: 'Noto Sans KR', sans-serif;}
+        body{margin: 0;background-color: #f7efdc;}
+        .wrap{position: relative; width: 600px; padding: 20px; margin: auto; padding-top: 100px;}
+        #hide0{margin-bottom: 150px;}
+        #hide4{margin-top: 70px;}
+        #f1{position: absolute; opacity: 0;}
+        #f2{position: absolute; opacity: 0;}
+        #story{position: absolute;}
+        /* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 17.5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 20px;
+  width: 150px;
+  left: -20px;
+
+
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #f8cb84;}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #e59829;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #c05b1c;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    background: white;
+}
+
+        #bt {background-color: #e59829; border: none; color: white; padding: 9px 13px;  text-align: center;  font-size: 16px;  cursor: pointer;}
+
+        #bt:hover {background-color: #c05b1c;}
+    </style>
+
+</head>
+
+<body>
+    <div class="wrap">
+            <div id="hide0">
+                <p id="story"></p>
+                <p id="f1">다음에도 꼭 와주세유</p>
+                <p id="f2">나도 아무 생가기 없으어</p>
+            </div>
+
+                <div id="hide1" class="container">
+                    <input type="radio" name="radio" id="Button1" class="Button">
+                    <span class="checkmark"></span>
+                    <p id="choice1">시작할래!</p>
+                </div>
+
+                <div id="hide2" class="container">
+                    <input type="radio"  name="radio" id="Button2" class="Button">
+                    <span class="checkmark"></span>
+                    <p id="choice2">다음에 할래</p>
+                </div>
+
+                <div id="hide3" class="container">
+                     <input type="radio" name="radio" id="Button3" class="Button">
+                     <span class="checkmark"></span>
+                     <p id="choice3">아무생각없음</p>
+                </div>
+
+            <div id="hide4">
+                <button type="button" id="bt" onclick="myFunction()">선택</button>
+            </div>
+    </div>
+
+<script type="text/javascript">
+    
+var Choix = 
+    ["당신은 과제에 파묻혀 있는 평범한 디자인과 학생입니다. 당신의 목표는 주인공인 당신을 무사히 밤이 되기 전까지 재우지 않고 일상생활을 헤쳐나가는 것입니다. 당신의 이름은 김용사! 과연 김용사는 자정이 되기 전까지 잠들지 아니할 수 있을 것 인가!",
+
+    "a오늘의 날씨는?",   
+
+    "a1아침이 되었다. 오늘은 날씨가 맑다! 따뜻한 하루가 될거 같아! 용사는 기분이 좋아졌다. 이제 용사는 아침밥을 먹을것 인가?",   
+    "a2아침이 되었다. 오늘은 날씨가 흐리군. 그냥그래. 이제 용사는 아침밥을 먹을것 인가?",
+    "a3아침이 되었다. 오늘은 비가 온다! 추울것 같다. 이럴땐 롱패딩으로 따숩게 입어야 한다. 이제 용사는 아침밥을 먹을것 인가?",
+
+    "a1오늘의 수업 교수님은 누굴까?",  
+    "a23오늘의 수업 교수님은 누굴까?", 
+    "a1오늘의 수업 교수님은 누굴까?", 
+    "a23오늘의 수업 교수님은 누굴까?",
+    "a1오늘의 수업 교수님은 누굴까?",
+    "a23오늘의 수업 교수님은 누굴까?",
+
+     "a1아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a2아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a3아침 수업은 어떡하든 졸린 법이다. 그래서 용사는 자버렸다. 안타깝게도 교수님의 아름다운 목소리를 자장가 삼아 졸고 말았다.",
+     "a1아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a2아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a3아침 수업은 어떡하든 졸린 법이다. 그래서 용사는 자버렸다. 안타깝게도 교수님의 아름다운 목소리를 자장가 삼아 졸고 말았다.",
+     "a1아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a2아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a3아침 수업은 어떡하든 졸린 법이다. 그래서 용사는 자버렸다. 안타깝게도 교수님의 아름다운 목소리를 자장가 삼아 졸고 말았다.",
+     "a1아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a2아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a3아침 수업은 어떡하든 졸린 법이다. 그래서 용사는 자버렸다. 안타깝게도 교수님의 아름다운 목소리를 자장가 삼아 졸고 말았다.",          
+     "a1아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a2아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a3아침 수업은 어떡하든 졸린 법이다. 그래서 용사는 자버렸다. 안타깝게도 교수님의 아름다운 목소리를 자장가 삼아 졸고 말았다.",
+     "a1아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a2아침 수업은 어떡하든 졸린 법이다. 그렇지만 용사는 이겨냈다! 시간이 흘러 쉬는 시간이 되었다. 친구가 편의점에 갔다오자 한다. 용사는 갈 것인가?",
+     "a3아침 수업은 어떡하든 졸린 법이다. 그래서 용사는 자버렸다. 안타깝게도 교수님의 아름다운 목소리를 자장가 삼아 졸고 말았다.",
+               
+   "c29용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+   "c30용사는 편의점에 가지 않았다. 수업시간이 끝났다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+   "c31용사는 편의점에 가지 않았다. 과실에 잠시 쉬러 들어갔지만 맑은 날씨의 따뜻한 온기와 푹신한 소파에 잠식당해 잠이 들고 말았다.",
+     "c32용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c33용사는 편의점에 가지 않았다. 수업시간이 끝났다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c34용사는 편의점에 가지 않았다. 과실에 잠시 쉬러 들어갔지만 맑은 날씨의 따뜻한 온기와 푹신한 소파에 잠식당해 잠이 들고 말았다.",
+
+     "c35용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c36용사는 편의점에 가지 않았다. 아침도 먹지 못했는데... 편의점에 갈껄.. 후회하면서 배고픔에 쓰러져 잠이 들고 말았다.",
+     "c37용사는 편의점에 가지 않았다. 과실에 쉬러 들어가 친구들과 수다를 떨었다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?", 
+     "c38용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c39용사는 편의점에 가지 않았다. 아침도 먹지 못했는데... 편의점에 갈껄.. 후회하면서 배고픔에 쓰러져 잠이 들고 말았다.",
+     "c40용사는 편의점에 가지 않았다. 과실에 쉬러 들어가 친구들과 수다를 떨었다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",    
+
+     "c41용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c42용사는 편의점에 가지 않았다. 수업시간이 끝났다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c43용사는 편의점에 가지 않았다. 과실에 쉬러 들어가 친구들과 수다를 떨었다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",  
+     "c44용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c45용사는 편의점에 가지 않았다. 수업시간이 끝났다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c46용사는 편의점에 가지 않았다. 과실에 쉬러 들어가 친구들과 수다를 떨었다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",     
+
+     "c47용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c48용사는 편의점에 가지 않았다. 아침도 먹지 못했는데... 편의점에 갈껄.. 후회하면서 배고픔에 쓰러져 잠이 들고 말았다.",
+     "c49용사는 편의점에 가지 않았다. 과실에 쉬러 들어가 친구들과 수다를 떨었다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",              
+     "c50용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c51용사는 편의점에 가지 않았다. 아침도 먹지 못했는데... 편의점에 갈껄.. 후회하면서 배고픔에 쓰러져 잠이 들고 말았다.",
+     "c52용사는 편의점에 가지 않았다. 과실에 쉬러 들어가 친구들과 수다를 떨었다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",  
+
+     "c53용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c54용사는 편의점에 가지 않았다. 수업시간이 끝났다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c55용사는 편의점에 가지 않았다. 과실에 잠시 쉬러 들어갔지만 추워진 날씨에 너무 따뜻하게 입고 나와 나른한 상태에서 푹신한 소파에 잠식당해 잠이 들고 말았다.",  
+     "c56용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c57용사는 편의점에 가지 않았다. 수업시간이 끝났다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c58용사는 편의점에 가지 않았다. 과실에 잠시 쉬러 들어갔지만 추워진 날씨에 너무 따뜻하게 입고 나와 나른한 상태에서 푹신한 소파에 잠식당해 잠이 들고 말았다.",    
+
+     "c59용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c60용사는 편의점에 가지 않았다. 아침도 먹지 못했는데... 편의점에 갈껄.. 후회하면서 배고픔에 쓰러져 잠이 들고 말았다.",
+     "c61용사는 편의점에 가지 않았다. 과실에 쉬러 들어가 친구들과 수다를 떨었다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",   
+     "c62용사는 편의점에 가는김에 커피를 획득했다. 커피의 힘으로 수업시간을 버티고 드디어 수업이 끝났다! 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?",
+     "c63용사는 편의점에 가지 않았다. 아침도 먹지 못했는데... 편의점에 갈껄.. 후회하면서 배고픔에 쓰러져 잠이 들고 말았다.",
+     "c64용사는 편의점에 가지 않았다. 과실에 쉬러 들어가 친구들과 수다를 떨었다. 점심시간이 되었다. 용사는 점심을 어떻게 먹을것 인가?"     
+
+     ];
+    window.onload = function()
+    {
+         document.getElementById("story").innerHTML = Choix[0];
+    }
+    function myFunction()
+    {
+        var story = document.getElementById("story").innerHTML;
+        var button_1_checked = document.getElementById('Button1').checked;
+        var button_2_checked = document.getElementById('Button2').checked;
+        var button_3_checked = document.getElementById('Button3').checked;
+        
+        if ( story == Choix[0] )
+           {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[1];
+                document.getElementById('choice1').innerHTML = "맑음";
+                document.getElementById('choice2').innerHTML = "흐림";
+                document.getElementById('choice3').innerHTML = "비";
+                }
+                else if ( button_2_checked ) 
+                {
+                    location.f1.style.opacity(1);
+                }
+                else if ( button_3_checked ) 
+                {
+                  location.reload();  
+                }
+           }
+        if ( story == Choix[1] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[2];
+                document.getElementById('choice1').innerHTML = "먹는다";
+                document.getElementById('choice2').innerHTML = "안먹는다";
+                document.getElementById('choice3').innerHTML = "지각이다";
+                }
+                else if ( button_2_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[3];
+                document.getElementById('choice1').innerHTML = "먹는다";
+                document.getElementById('choice2').innerHTML = "안먹는다";
+                document.getElementById('choice3').innerHTML = "지각이다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[4];
+                document.getElementById('choice1').innerHTML = "먹는다";
+                document.getElementById('choice2').innerHTML = "안먹는다";
+                document.getElementById('choice3').innerHTML = "지각이다";
+                }
+            }
+        if ( story == Choix[2] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[5];
+                document.getElementById('choice1').innerHTML = "A교수님";
+                document.getElementById('choice2').innerHTML = "B교수님";
+                document.getElementById('choice3').innerHTML = "C교수님";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[6];
+                document.getElementById('choice1').innerHTML = "A교수님";
+                document.getElementById('choice2').innerHTML = "B교수님";
+                document.getElementById('choice3').innerHTML = "C교수님";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[6];
+                document.getElementById('choice1').innerHTML = "A교수님";
+                document.getElementById('choice2').innerHTML = "B교수님";
+                document.getElementById('choice3').innerHTML = "C교수님";
+                }
+            }
+        if ( story == Choix[3] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[7];
+                document.getElementById('choice1').innerHTML = "A교수님";
+                document.getElementById('choice2').innerHTML = "B교수님";
+                document.getElementById('choice3').innerHTML = "C교수님";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[8];
+                document.getElementById('choice1').innerHTML = "A교수님";
+                document.getElementById('choice2').innerHTML = "B교수님";
+                document.getElementById('choice3').innerHTML = "C교수님";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[8];
+                document.getElementById('choice1').innerHTML = "A교수님";
+                document.getElementById('choice2').innerHTML = "B교수님";
+                document.getElementById('choice3').innerHTML = "C교수님";
+                }
+            }
+        if ( story == Choix[4] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[9];
+                document.getElementById('choice1').innerHTML = "A교수님";
+                document.getElementById('choice2').innerHTML = "B교수님";
+                document.getElementById('choice3').innerHTML = "C교수님";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[10];
+                document.getElementById('choice1').innerHTML = "A교수님";
+                document.getElementById('choice2').innerHTML = "B교수님";
+                document.getElementById('choice3').innerHTML = "C교수님";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[10];
+                document.getElementById('choice1').innerHTML = "A교수님";
+                document.getElementById('choice2').innerHTML = "B교수님";
+                document.getElementById('choice3').innerHTML = "C교수님";
+                }
+            }
+
+
+        if ( story == Choix[5] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[11];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[12];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[13];
+                }
+            }    
+        if ( story == Choix[6] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[14];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[15];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[16];
+                }
+            }         
+        if ( story == Choix[7] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[17];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[18];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[19];
+                }
+            } 
+        if ( story == Choix[8] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[20];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[21];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[22];
+                }
+            }   
+        if ( story == Choix[9] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[23];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[24];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[25];
+                }
+            }   
+        if ( story == Choix[10] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[26];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[27];
+                document.getElementById('choice1').innerHTML = "간다";
+                document.getElementById('choice2').innerHTML = "안간다";
+                document.getElementById('choice3').innerHTML = "과실로 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[28];
+                }
+            }   
+
+//맑음수업a
+
+         if ( story == Choix[11] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[29];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[30];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[31];
+                }
+            }   
+         if ( story == Choix[12] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[32];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[33];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[34];
+                }
+            }                                       
+         if ( story == Choix[14] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[35];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[36];
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[37];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+            }
+         if ( story == Choix[15] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[38];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[39];
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[40];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";                
+                }
+            }
+         if ( story == Choix[17] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[41];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[42];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[43];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+            }
+         if ( story == Choix[18] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[44];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[45];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[46];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+            }
+         if ( story == Choix[20] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[47];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[48];
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[49];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";                
+                }
+            }
+         if ( story == Choix[21] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[50];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[51];
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[52];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";                
+                }
+            }            
+         if ( story == Choix[23] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[53];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[54];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다"; 
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[55];               
+                }
+            }  
+         if ( story == Choix[24] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[56];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[57];
+                 document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[58];
+                }
+            }  
+         if ( story == Choix[26] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[59];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[60];
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[61];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";                
+                }
+            }  
+         if ( story == Choix[27] )
+            {
+                if ( button_1_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[62];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";
+                }
+                else if ( button_2_checked ) 
+                {
+                 document.getElementById("story").innerHTML = Choix[63];
+                }
+                else if ( button_3_checked ) 
+                {
+                document.getElementById("story").innerHTML = Choix[64];
+                document.getElementById('choice1').innerHTML = "학교 정문에 있는 맛집을 간다 ";
+                document.getElementById('choice2').innerHTML = "우리는 배달의 민족이지! 배달시켜먹는다";
+                document.getElementById('choice3').innerHTML = "공학관에서 5분이내에 있는 맛집을 간다";                
+                }
+            }  
+
+
+
+
+        //a set of if statements for each Story / 'TEST'
+        //...
+        if ( button_1_checked == false && button_2_checked == false && button_3_checked == false)
+           {    
+               alert("선택후 누르세요!");
+               return;
+           }
+        document.getElementById('Button1').checked = false;
+        document.getElementById('Button2').checked = false;
+        document.getElementById('Button3').checked = false;
+    }
+</script>
+
+</body>
+</html>
